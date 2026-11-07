@@ -11,12 +11,12 @@ var app = builder.Build();
 
 // Enganchando CoreWCF a ASP.NET Core, y agregamos la clase con la logica
 app.UseServiceModel(ServiceBuilder => {
-    ServiceBuilder.AddService<CalculadoraSoap>();
-    ServiceBuilder.AddServiceEndpoint<CalculadoraSoap, ICalculadoraSoap>(new BasicHttpBinding(), "/Calculadora.svc")
+    ServiceBuilder.AddService<CalculadoraService>();
+    ServiceBuilder.AddServiceEndpoint<CalculadoraService, ICalculadoraService>(new BasicHttpBinding(), "/CalculadoraService.svc");
 
     // Activar la publicacion del WSDL
     var serviceMetadataBehavior = app.Services.GetRequiredService<ServiceMetadataBehavior>();
     serviceMetadataBehavior.HttpGetEnabled = true;
-})
+});
 
 app.Run();
